@@ -1,0 +1,11 @@
+version: v1
+name: buf.build/qwant/snapearth
+deps:
+  - buf.build/googleapis/googleapis
+  - buf.build/qwant/geobuf
+lint:
+  use:
+    - DEFAULT
+breaking:
+  use:
+    - FILE

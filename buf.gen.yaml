@@ -1,0 +1,19 @@
+version: v1
+managed:
+  enabled: true
+  optimize_for: SPEED
+
+plugins:
+  - name: go
+    out: gen/go/
+  - name: go-grpc
+    out: gen/go/
+  - name: python
+    out: src/
+  - name: grpc-python
+    out: src/
+    path: grpc_python_plugin
+  # OPTIONAL
+  #- name: doc
+  #  out: docs/source/
+  #  opt: html,api.html
