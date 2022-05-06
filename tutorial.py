@@ -14,6 +14,10 @@
 #     name: python3
 # ---
 
+!git clone https://github.com/chicham/snapearthapis.git
+!pip install -r snapearthapis/requirements.txt
+!pip install -e snapearthapis/gen/python/snapearth
+
 # %% [markdown]
 # # EarthSignature Tutorial
 #
