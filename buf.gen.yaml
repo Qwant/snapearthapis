@@ -4,8 +4,7 @@ managed:
   optimize_for: SPEED
 
 plugins:
-  - name: python
-    out: gen/python
-  - name: grpc-python
+  - remote: buf.build/protocolbuffers/plugins/python
     out: gen/python/
-    path: grpc_python_plugin
+  - remote: buf.build/grpc/plugins/python
+    out: gen/python/
