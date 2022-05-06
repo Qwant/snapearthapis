@@ -4,16 +4,8 @@ managed:
   optimize_for: SPEED
 
 plugins:
-  - name: go
-    out: gen/go/
-  - name: go-grpc
-    out: gen/go/
   - name: python
-    out: src/
+    out: gen/python
   - name: grpc-python
-    out: src/
+    out: gen/python/
     path: grpc_python_plugin
-  # OPTIONAL
-  #- name: doc
-  #  out: docs/source/
-  #  opt: html,api.html

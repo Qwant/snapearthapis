@@ -30,8 +30,23 @@ service DatabaseProductService{
             get: "/v1/segmentation:search"
             body: "*"
         };
-
     }
+    rpc ListProductIds(ListProductIdsRequest) returns (stream ProductId){}
+
+}
+
+message ListProductIdsRequest {
+    optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
+    optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
+    optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
+    repeated string categories = 4; // Categories to filter
+}
+
+message ProductId {
+    string wkt = 1; // area of acquisition of the product
+    string product_id = 2;
+    google.protobuf.Timestamp publication_date = 3;
+    google.protobuf.Timestamp creation_date = 4;
 }
 
 // The request message to create a new product in the database
