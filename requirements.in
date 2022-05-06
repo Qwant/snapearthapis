@@ -1,3 +1,4 @@
+-e "git+https://github.com/chicham/snapearthapis#egg=snapearthapis&subdirectory=gen/python/"
 grpcio
 grpcio-tools
 rasterio>=1.2
