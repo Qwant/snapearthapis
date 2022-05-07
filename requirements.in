@@ -1,3 +1,5 @@
+grpclib
+protobuf
 grpcio
 grpcio-tools
 rasterio>=1.2

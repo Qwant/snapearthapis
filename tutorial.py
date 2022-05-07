@@ -14,6 +14,7 @@
 #     name: python3
 # ---
 
+!rm -rf snapearthapis
 !git clone https://github.com/chicham/snapearthapis.git
 !pip install -r snapearthapis/requirements.txt
 
@@ -30,7 +31,7 @@
 # %%
 import sys
 
-sys.path.append("./gen/python")
+sys.path.append("snapearthapis/gen/python/")
 
 import base64
 
@@ -40,7 +41,6 @@ from google.colab import drive
 from shapely import wkt
 from shapely.geometry import mapping
 
-from snapearth.api.v1 import database_pb2, database_pb2_grpc
 
 EUROPE_COORDINATES = wkt.loads(
     "POLYGON((-10.61 71.16, 44.85 71.16, 44.85 35.97, -10.61 35.97, -10.61 71.16))",
@@ -64,6 +64,10 @@ map_ = folium.Map(
     zoom_start=4,
     crs="EPSG3857",
 )
+
+async def get_responses():
+    async with
+
 
 with grpc.insecure_channel(f"{host}", options) as channel:
     stub = database_pb2_grpc.DatabaseProductServiceStub(channel)

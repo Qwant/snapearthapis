@@ -6,5 +6,5 @@ managed:
 plugins:
   - remote: buf.build/protocolbuffers/plugins/python
     out: gen/python/
-  - remote: buf.build/grpc/plugins/python
+  - name: grpclib_python
     out: gen/python/
