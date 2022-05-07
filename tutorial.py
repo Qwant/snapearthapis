@@ -37,27 +37,28 @@ import base64
 
 import folium
 import grpc
-from google.colab import drive
 from shapely import wkt
 from shapely.geometry import mapping
+from grpclib.client import Channel
+from grpclib.config import Configuration
+from snapearth.api.v1.database_grpc import DatabaseProductServiceStub
+from snapearth.api.v1.database_pb2 import ListProductIdsRequest
 
 
 EUROPE_COORDINATES = wkt.loads(
     "POLYGON((-10.61 71.16, 44.85 71.16, 44.85 35.97, -10.61 35.97, -10.61 71.16))",
 )
 MAP_CENTER = mapping(EUROPE_COORDINATES.centroid)
+GRPC_CONFIGURATION = Configuration(
+        http2_connection_window_size=2000000000,
+        http2_stream_window_size=2000000000,
+)
 
 # %%
 
 # host = "earthsignature.snapearth.eu:443"
 host = "10.110.3.49:50051"
 ssl = False
-options = [
-    ("grpc.max_receive_message_length", 2**30),
-    ("grpc.max_send_message_length", 2**30),
-    ("grpc.keepalive_timeout_ms", 60000),
-]
-
 
 map_ = folium.Map(
     location=MAP_CENTER["coordinates"][::-1],
@@ -66,12 +67,12 @@ map_ = folium.Map(
 )
 
 async def get_responses():
-    async with
+    async with Channel(host, ssl=ssl, configuration=GRPC_CONFIGURATION) as channel:
+        print(channel)
 
 
-with grpc.insecure_channel(f"{host}", options) as channel:
-    stub = database_pb2_grpc.DatabaseProductServiceStub(channel)
-    request = database_pb2.ListProductIdsRequest()
+    stub = DatabaseProductServiceStub(channel)
+    request = ListProductIdsRequest()
     responses = stub.ListProductIds(request)
     for response in responses:
         geom = wkt.loads(response.wkt)
