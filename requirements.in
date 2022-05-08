@@ -1,8 +1,4 @@
-grpclib
-protobuf
-grpcio
-grpcio-tools
 rasterio>=1.2
-folium
+folium>0.10
 shapely
-nest_asyncio
+orjson
