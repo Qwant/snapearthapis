@@ -36,13 +36,16 @@ sys.path.append("snapearthapis/gen/python/")
 import base64
 
 import folium
-import grpc
 from shapely import wkt
 from shapely.geometry import mapping
 from grpclib.client import Channel
 from grpclib.config import Configuration
 from snapearth.api.v1.database_grpc import DatabaseProductServiceStub
 from snapearth.api.v1.database_pb2 import ListProductIdsRequest
+import nest_asyncio
+import asyncio
+
+nest_asyncio.apply()
 
 
 EUROPE_COORDINATES = wkt.loads(
@@ -50,8 +53,8 @@ EUROPE_COORDINATES = wkt.loads(
 )
 MAP_CENTER = mapping(EUROPE_COORDINATES.centroid)
 GRPC_CONFIGURATION = Configuration(
-        http2_connection_window_size=2000000000,
-        http2_stream_window_size=2000000000,
+        http2_connection_window_size=2**30,
+        http2_stream_window_size=2**30,
 )
 
 # %%
@@ -66,7 +69,7 @@ map_ = folium.Map(
     crs="EPSG3857",
 )
 
-async def get_responses():
+async def get_responses(host, ssl):
     async with Channel(host, ssl=ssl, configuration=GRPC_CONFIGURATION) as channel:
         print(channel)
 
@@ -81,7 +84,7 @@ async def get_responses():
         folium.Marker(tooltip=f"{response.product_id}", location=location).add_to(
             map_,
         )
-map_
+map_ = asyncio.run(get_responses(host, ssl))
 
 # %% [markdown]
 # ## Query the API
