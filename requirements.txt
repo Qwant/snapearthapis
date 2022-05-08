@@ -43,6 +43,8 @@ markupsafe==2.1.1
     # via jinja2
 multidict==6.0.2
     # via grpclib
+nest-asyncio==1.5.5
+    # via -r requirements.in
 numpy==1.21.6
     # via
     #   rasterio

@@ -5,3 +5,4 @@ grpcio-tools
 rasterio>=1.2
 folium
 shapely
+nest_asyncio
