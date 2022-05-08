@@ -6,29 +6,10 @@
 #
 affine==2.3.1
     # via rasterio
-alabaster==0.7.12
-    # via sphinx
-albumentations==0.1.12
-    # via -r requirements.in
 attrs==21.4.0
-    # via
-    #   jsonschema
-    #   pytest
-    #   rasterio
-babel==2.10.1
-    # via sphinx
-beautifulsoup4==4.11.1
-    # via nbconvert
-bleach==5.0.0
-    # via nbconvert
-cachetools==5.0.0
-    # via google-auth
+    # via rasterio
 certifi==2021.10.8
-    # via
-    #   rasterio
-    #   requests
-chardet==3.0.4
-    # via requests
+    # via rasterio
 click==8.1.3
     # via
     #   click-plugins
@@ -38,35 +19,7 @@ click-plugins==1.1.1
     # via rasterio
 cligj==0.7.2
     # via rasterio
-coverage==3.7.1
-    # via
-    #   coveralls
-    #   datascience
-coveralls==0.5
-    # via datascience
-datascience==0.10.6
-    # via -r requirements.in
-decorator==5.1.1
-    # via ipython
-defusedxml==0.7.1
-    # via nbconvert
-docopt==0.6.2
-    # via coveralls
-docutils==0.17.1
-    # via sphinx
-entrypoints==0.4
-    # via
-    #   jupyter-client
-    #   nbconvert
-fastjsonschema==2.15.3
-    # via nbformat
 folium==0.2.1
-    # via
-    #   -r requirements.in
-    #   datascience
-google-auth==1.4.2
-    # via google-colab
-google-colab==1.0.0
     # via -r requirements.in
 grpcio==1.46.0
     # via
@@ -82,254 +35,36 @@ hpack==4.0.0
     # via h2
 hyperframe==6.0.1
     # via h2
-idna==2.8
-    # via requests
-imageio==2.19.0
-    # via scikit-image
-imagesize==1.3.0
-    # via sphinx
-imgaug==0.2.6
-    # via albumentations
 importlib-metadata==4.11.3
-    # via
-    #   click
-    #   jsonschema
-    #   pluggy
-    #   pytest
-    #   sphinx
-importlib-resources==5.7.1
-    # via jsonschema
-iniconfig==1.1.1
-    # via pytest
-ipykernel==4.6.1
-    # via
-    #   google-colab
-    #   notebook
-ipython==5.5.0
-    # via
-    #   google-colab
-    #   ipykernel
-ipython-genutils==0.2.0
-    # via notebook
+    # via click
 jinja2==3.1.2
-    # via
-    #   folium
-    #   nbconvert
-    #   notebook
-    #   sphinx
-jsonschema==4.5.1
-    # via nbformat
-jupyter-client==7.0.6
-    # via
-    #   -r requirements.in
-    #   ipykernel
-    #   nbclient
-    #   notebook
-jupyter-core==4.10.0
-    # via
-    #   jupyter-client
-    #   nbconvert
-    #   nbformat
-    #   notebook
-jupyterlab-pygments==0.2.2
-    # via nbconvert
+    # via folium
 markupsafe==2.1.1
-    # via
-    #   jinja2
-    #   nbconvert
-mistune==0.8.4
-    # via nbconvert
+    # via jinja2
 multidict==6.0.2
     # via grpclib
-nbclient==0.6.2
-    # via nbconvert
-nbconvert==6.5.0
-    # via notebook
-nbformat==5.4.0
-    # via
-    #   nbclient
-    #   nbconvert
-    #   notebook
-nest-asyncio==1.5.5
-    # via
-    #   jupyter-client
-    #   nbclient
-networkx==2.6.3
-    # via scikit-image
-notebook==5.2.2
-    # via google-colab
 numpy==1.21.6
     # via
-    #   albumentations
-    #   imageio
-    #   imgaug
-    #   opencv-python
-    #   pandas
-    #   pywavelets
     #   rasterio
-    #   scikit-image
-    #   scipy
     #   snuggs
-    #   tifffile
-opencv-python==4.5.5.64
-    # via albumentations
-packaging==21.3
-    # via
-    #   nbconvert
-    #   pytest
-    #   scikit-image
-    #   sphinx
-pandas==0.24.2
-    # via google-colab
-pandocfilters==1.5.0
-    # via nbconvert
-pexpect==4.8.0
-    # via ipython
-pickleshare==0.7.5
-    # via ipython
-pillow==9.1.0
-    # via
-    #   imageio
-    #   scikit-image
-pluggy==1.0.0
-    # via pytest
-portpicker==1.2.0
-    # via google-colab
-prompt-toolkit==1.0.18
-    # via ipython
 protobuf==3.20.1
     # via
     #   -r requirements.in
     #   grpcio-tools
-ptyprocess==0.7.0
-    # via
-    #   pexpect
-    #   terminado
-py==1.11.0
-    # via pytest
-pyasn1==0.4.8
-    # via
-    #   pyasn1-modules
-    #   rsa
-pyasn1-modules==0.2.8
-    # via google-auth
-pygments==2.12.0
-    # via
-    #   ipython
-    #   nbconvert
-    #   sphinx
 pyparsing==3.0.8
-    # via
-    #   packaging
-    #   snuggs
-pyrsistent==0.18.1
-    # via jsonschema
-pytest==7.1.2
-    # via datascience
-python-dateutil==2.8.2
-    # via
-    #   jupyter-client
-    #   pandas
-pytz==2022.1
-    # via
-    #   babel
-    #   pandas
-pywavelets==1.3.0
-    # via scikit-image
-pyyaml==6.0
-    # via coveralls
-pyzmq==22.3.0
-    # via jupyter-client
+    # via snuggs
 rasterio==1.2.10
     # via -r requirements.in
-requests==2.21.0
-    # via
-    #   coveralls
-    #   google-colab
-    #   sphinx
-rsa==4.8
-    # via google-auth
-scikit-image==0.19.2
-    # via imgaug
-scipy==1.7.3
-    # via
-    #   albumentations
-    #   imgaug
-    #   scikit-image
 shapely==1.8.2
     # via -r requirements.in
-simplegeneric==0.8.1
-    # via ipython
 six==1.12.0
-    # via
-    #   bleach
-    #   google-auth
-    #   google-colab
-    #   grpcio
-    #   imgaug
-    #   prompt-toolkit
-    #   python-dateutil
-snowballstemmer==2.2.0
-    # via sphinx
+    # via grpcio
 snuggs==1.4.7
     # via rasterio
-soupsieve==2.3.2.post1
-    # via beautifulsoup4
-sphinx==4.5.0
-    # via datascience
-sphinxcontrib-applehelp==1.0.2
-    # via sphinx
-sphinxcontrib-devhelp==1.0.2
-    # via sphinx
-sphinxcontrib-htmlhelp==2.0.0
-    # via sphinx
-sphinxcontrib-jsmath==1.0.1
-    # via sphinx
-sphinxcontrib-qthelp==1.0.3
-    # via sphinx
-sphinxcontrib-serializinghtml==1.1.5
-    # via sphinx
-terminado==0.13.3
-    # via notebook
-tifffile==2021.11.2
-    # via scikit-image
-tinycss2==1.1.1
-    # via nbconvert
-tomli==2.0.1
-    # via pytest
-tornado==4.5.3
-    # via
-    #   google-colab
-    #   ipykernel
-    #   jupyter-client
-    #   notebook
-    #   terminado
-traitlets==5.1.1
-    # via
-    #   ipykernel
-    #   ipython
-    #   jupyter-client
-    #   jupyter-core
-    #   nbclient
-    #   nbconvert
-    #   nbformat
-    #   notebook
 typing-extensions==4.2.0
-    # via
-    #   importlib-metadata
-    #   jsonschema
-urllib3==1.24.3
-    # via requests
-wcwidth==0.2.5
-    # via prompt-toolkit
-webencodings==0.5.1
-    # via
-    #   bleach
-    #   tinycss2
+    # via importlib-metadata
 zipp==3.8.0
-    # via
-    #   importlib-metadata
-    #   importlib-resources
+    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools
