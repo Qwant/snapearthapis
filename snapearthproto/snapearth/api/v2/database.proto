@@ -1,0 +1,74 @@
+syntax = "proto3";
+option optimize_for = LITE_RUNTIME;
+
+package snapearth.api.v2.database;
+
+import "geobufproto/geobuf.proto";
+import "google/protobuf/descriptor.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+
+
+// Service that exposes the EarthSignature database.
+// The service exposes two endpoints for its consumers
+// - ListSegmentation to query a list of segmentation responses
+// - CreateProduct to add a new product in the database
+service DatabaseProductService{
+    // Query the database and returns a list of SegmentationResponse
+    rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {
+        option (google.api.http) = {
+            get: "/v1/segmentation:list"
+            body: "*"
+        };
+    }
+    // Add a new product in the database
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
+    // Method to search a list of segmentation with textual query
+    rpc SearchSegmentation(SearchSegmentationRequest) returns (stream SegmentationResponse){
+        option (google.api.http) = {
+            get: "/v1/segmentation:search"
+            body: "*"
+        };
+
+    }
+}
+
+// The request message to create a new product in the database
+message CreateProductRequest{
+    geobufproto.Data data=1; // Geojson describing the product
+}
+
+//Empty message
+message CreateProductResponse{
+}
+
+message SearchSegmentationRequest{
+    string query=1; // Query string for the search
+    optional int32 n_results = 2;
+    google.protobuf.FileDescriptorSet descriptor_set = 3;
+}
+
+// Message used to query the database. All the fields are optional but there is a limit to the number of results returned
+message ListSegmentationRequest{
+    optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
+    optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
+    optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
+    repeated string product_ids = 4; // Products id to filter
+    repeated string categories = 5; // Categories to filter
+    optional int32 n_results = 6;
+}
+
+// Response message for the ListSegmentation method. The segmentation is serialized in GeoTiff 16bits format and cloud_mask is serialized in GeoTiff 1bits format
+message SegmentationResponse {
+    string wkt = 1; // area of acquisition of the product
+    string product_id = 4;
+    string quicklook = 5;
+    string product_type = 6;
+    google.protobuf.Timestamp publication_date = 7;
+    google.protobuf.Timestamp creation_date = 8;
+    float cloud_cover = 9;
+    string browse_url = 10;
+    string download_url = 11;
+    geobufproto.Data categories = 12;
+}
