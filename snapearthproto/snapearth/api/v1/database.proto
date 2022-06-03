@@ -79,8 +79,8 @@ message ListSegmentationRequest{
 // Response message for the ListSegmentation method. The segmentation is serialized in GeoTiff 16bits format and cloud_mask is serialized in GeoTiff 1bits format
 message SegmentationResponse {
     string wkt = 1; // area of acquisition of the product
-    bytes segmentation = 2; // Raster array where each pixel is mapped to a category.
-    bytes cloud_mask = 3; // Cloud mask. 1 mean cloud 0 no clouds
+    string segmentation = 2; // Raster array where each pixel is mapped to a category.
+    string cloud_mask = 3; // Cloud mask. 1 mean cloud 0 no clouds
     string product_id = 4;
     string quicklook = 5;
     string product_type = 6;
