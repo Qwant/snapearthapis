@@ -24,19 +24,15 @@ service DatabaseProductService{
     }
     // Add a new product in the database
     rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
-    // Method to search a list of segmentation with textual query
-    rpc SearchSegmentation(SearchSegmentationRequest) returns (stream SegmentationResponse){
-        option (google.api.http) = {
-            get: "/v1/segmentation:search"
-            body: "*"
-        };
-
-    }
-    rpc ListProductIds(ListProductIdsRequest) returns (stream ProductId){}
+    rpc ListProductIds(ListProductIdsRequest) returns (stream ListProductIdsResponse){}
 }
 
 message ListProductIdsRequest {
     geobufproto.Data query=1;
+}
+
+message ListProductIdsResponse {
+    geobufproto.Data product=1;
 }
 
 // The request message to create a new product in the database
