@@ -28,7 +28,10 @@ service DatabaseProductService{
 }
 
 message ListProductIdsRequest {
-    geobufproto.Data query=1;
+    optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
+    optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
+    optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
+    repeated string categories = 4; // Categories to filter
 }
 
 message ListProductIdsResponse {
@@ -44,9 +47,20 @@ message CreateProductRequest{
 message CreateProductResponse{
 }
 
-// Message used to query the database. All the fields are optional but there is a limit to the number of results returned
+// The request message to query a list of product_id with their corresponding geometry
+// We use the following property to specify the query
+// - earthsignature_product_ids: the product_id to query
+// - earthsignature_start_date: the start acquisition date
+// - earthsignature_end_date: the end acquisition date
+// - earthsignature_categories: the categories to filter
+// - earthsignature_n_results: the number of result to request
 message ListSegmentationRequest{
-    geobufproto.Data query = 1;
+    optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
+    optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
+    optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
+    repeated string product_ids = 4; // Products id to filter
+    repeated string categories = 5; // Categories to filter
+    optional int32 n_results = 6;
 }
 
 message SegmentationResponse {
