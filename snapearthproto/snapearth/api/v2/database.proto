@@ -31,7 +31,7 @@ message ListProductIdsRequest {
     optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
     optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
     optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
-    repeated string categories = 4; // Categories to filter
+    repeated int32 categories = 4; // Categories to filter
 }
 
 message ListProductIdsResponse {
@@ -59,7 +59,7 @@ message ListSegmentationRequest{
     optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
     optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
     repeated string product_ids = 4; // Products id to filter
-    repeated string categories = 5; // Categories to filter
+    repeated int32 categories = 5; // Categories to filter
     optional int32 n_results = 6;
 }
 
