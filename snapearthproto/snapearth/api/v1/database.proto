@@ -52,8 +52,8 @@ message ProductId {
 // The request message to create a new product in the database
 message CreateProductRequest{
     geobufproto.Data data=1; // Geojson describing the product
-    bytes segmentation = 2; // segmentted product
-    bytes cloud_mask = 3; // Cloud mask. 1 mean cloud 0 no clouds
+    string segmentation = 2; // segmented product
+    string cloud_mask = 3; // Cloud mask. 1 mean cloud 0 no clouds
 }
 
 //Empty message
