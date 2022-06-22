@@ -4,7 +4,7 @@ managed:
   optimize_for: SPEED
 
 plugins:
-  - remote: buf.build/protocolbuffers/plugins/python
-    out: gen/python/
-  - name: grpclib_python
-    out: gen/python/
+  - remote: buf.build/protocolbuffers/plugins/python:v3.20.1-1
+    out: gen/
+  - remote: buf.build/grpc/plugins/python:v1.46.3-1
+    out: gen/
