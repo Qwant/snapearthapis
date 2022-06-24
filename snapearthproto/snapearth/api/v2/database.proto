@@ -1,4 +1,7 @@
 syntax = "proto3";
+/*
+   V2 of the EarthSignature API. This version of the API is designed to return `geobufproto.Data` instead of custom messages. The v2 also provides the same endpoints as the v1 and is intend to become the long term replacent of the v1.
+*/
 package snapearth.api.v2.database;
 
 import "geobufproto/geobuf.proto";
@@ -8,40 +11,58 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
 
-// The Service that exposes the EarthSignature database.
-// it provides three endpoints
-// - ListSegmentation: This endpoints returns a list of segments that are available in the database.
-// - ListProductIds:  This endpoint returns the list of the product that are available in the database.
-// - CreateProduct: This endpoint creates a new product in the database.
+/*
+The Service that exposes the EarthSignature database.
+it provides three endpoints
+ - ListSegmentation: This endpoints returns a list of segments that are available in the database.
+ - ListProductIds:  This endpoint returns the list of the product that are available in the database.
+ - CreateProduct: This endpoint creates a new product in the database.
+*/
 service DatabaseProductService{
     rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {}
     rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
     rpc ListProductIds(ListProductIdsRequest) returns (stream SegmentationResponse){}
 }
 
+/*
+   Request to the ListProductIds endpoint. The request specify which fields will be used to filter
+   the product in the database. If none of the fields are specified, all the products will be returned.
+   - wkt: The WKT representation of the polygon that will be used to filter the products.
+   - start_date: The start date of the period that will be used to filter the products.
+   - end_date: The end date of the period that will be used to filter the products.
+   - categories: The categories that will be used to filter the products.
+*/
 message ListProductIdsRequest {
-    optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
-    optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
-    optional google.protobuf.Timestamp end_date = 3; // product end acquisition date
-    repeated int32 categories = 4; // Categories to filter
+    optional string wkt = 1;
+    optional google.protobuf.Timestamp start_date = 2;
+    optional google.protobuf.Timestamp end_date = 3;
+    repeated int32 categories = 4;
 }
 
-// The request message to create a new product in the database
+/*
+   Request to the CreateProduct endpoint. The request specify the product that will be created in the database.
+    - product: The product that will be created in the database.
+*/
 message CreateProductRequest{
     geobufproto.Data product=1; // Geojson describing the product
 }
 
-//Empty message
+/*
+    Response from the CreateProduct endpoint. The response is empty if the product was created successfully.
+*/
 message CreateProductResponse{
 }
 
-// The request message to query a list of product_id with their corresponding geometry
-// We use the following property to specify the query
-// - earthsignature_product_ids: the product_id to query
-// - earthsignature_start_date: the start acquisition date
-// - earthsignature_end_date: the end acquisition date
-// - earthsignature_categories: the categories to filter
-// - earthsignature_n_results: the number of result to request
+/*
+   Request to the ListSegmentation endpoint. The request specify which fields will be used to filter the database. If none of the fields are provided, the service returns a list of products by descending creation date.
+   The API is limited to a maximum of 500 products.
+    - wkt: The WKT representation of the polygon that will be used to filter the products.
+    - start_date: The start date of the period that will be used to filter the products.
+    - end_date: The end date of the period that will be used to filter the products.
+    - product_ids: The product ids that will be used to filter the products.
+    - categories: The categories that will be used to filter the products.
+    - n_results: The maximum number of results that will be returned.
+*/
 message ListSegmentationRequest{
     optional string wkt = 1; //area to query in Well Know Text format. Optional if product_ids is set
     optional google.protobuf.Timestamp start_date = 2; // product  start acquisition date
@@ -51,6 +72,9 @@ message ListSegmentationRequest{
     optional int32 n_results = 6;
 }
 
+/*
+    Response from the ListSegmentation endpoint. The response is a FeatureCollection containing the products.
+*/
 message SegmentationResponse {
     geobufproto.Data segmentation = 1;
 }
