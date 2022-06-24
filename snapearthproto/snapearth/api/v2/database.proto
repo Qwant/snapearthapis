@@ -1,4 +1,5 @@
 syntax = "proto3";
+package snapearth.api.v2.database;
 
 import "geobufproto/geobuf.proto";
 import "google/protobuf/descriptor.proto";
@@ -13,7 +14,7 @@ import "google/api/annotations.proto";
 // - ListProductIds:  This endpoint returns the list of the product that are available in the database.
 // - CreateProduct: This endpoint creates a new product in the database.
 service DatabaseProductService{
-    rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {
+    rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {}
     rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
     rpc ListProductIds(ListProductIdsRequest) returns (stream SegmentationResponse){}
 }
