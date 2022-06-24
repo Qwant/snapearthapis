@@ -1,7 +1,4 @@
 syntax = "proto3";
-option optimize_for = LITE_RUNTIME;
-
-package snapearth.api.v1.database;
 
 import "geobufproto/geobuf.proto";
 import "google/protobuf/descriptor.proto";

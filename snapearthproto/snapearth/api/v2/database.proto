@@ -1,7 +1,4 @@
 syntax = "proto3";
-option optimize_for = LITE_RUNTIME;
-
-package snapearth.api.v2.database;
 
 import "geobufproto/geobuf.proto";
 import "google/protobuf/descriptor.proto";
@@ -10,19 +7,13 @@ import "google/protobuf/timestamp.proto";
 import "google/api/annotations.proto";
 
 
-// Service that exposes the EarthSignature database.
-// The service exposes two endpoints for its consumers
-// - ListSegmentation to query a list of segmentation responses
-// - CreateProduct to add a new product in the database
+// The Service that exposes the EarthSignature database.
+// it provides three endpoints
+// - ListSegmentation: This endpoints returns a list of segments that are available in the database.
+// - ListProductIds:  This endpoint returns the list of the product that are available in the database.
+// - CreateProduct: This endpoint creates a new product in the database.
 service DatabaseProductService{
-    // Query the database and returns a list of SegmentationResponse
     rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {
-        option (google.api.http) = {
-            get: "/v1/segmentation:list"
-            body: "*"
-        };
-    }
-    // Add a new product in the database
     rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
     rpc ListProductIds(ListProductIdsRequest) returns (stream SegmentationResponse){}
 }
