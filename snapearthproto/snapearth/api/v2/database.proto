@@ -5,10 +5,7 @@ syntax = "proto3";
 package snapearth.api.v2.database;
 
 import "geobufproto/geobuf.proto";
-import "google/protobuf/descriptor.proto";
-import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-import "google/api/annotations.proto";
 
 
 /*
@@ -73,7 +70,7 @@ message ListSegmentationRequest{
 }
 
 /*
-    Response from the ListSegmentation endpoint. The response is a FeatureCollection containing the products.
+    Response from the ListSegmentation endpoint. The response is a `FeatureCollection` containing the products.
 */
 message SegmentationResponse {
     geobufproto.Data segmentation = 1;
