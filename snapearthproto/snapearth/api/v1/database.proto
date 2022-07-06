@@ -5,7 +5,6 @@ import "geobufproto/geobuf.proto";
 import "google/protobuf/descriptor.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
-import "google/api/annotations.proto";
 
 
 // Service that exposes the EarthSignature database.
@@ -14,23 +13,10 @@ import "google/api/annotations.proto";
 // - CreateProduct to add a new product in the database
 service DatabaseProductService{
     // Query the database and returns a list of SegmentationResponse
-    rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {
-        option (google.api.http) = {
-            get: "/v1/segmentation:list"
-            body: "*"
-        };
-    }
+    rpc ListSegmentation(ListSegmentationRequest) returns (stream SegmentationResponse) {}
     // Add a new product in the database
     rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}
-    // Method to search a list of segmentation with textual query
-    rpc SearchSegmentation(SearchSegmentationRequest) returns (stream SegmentationResponse){
-        option (google.api.http) = {
-            get: "/v1/segmentation:search"
-            body: "*"
-        };
-    }
     rpc ListProductIds(ListProductIdsRequest) returns (stream ProductId){}
-
 }
 
 message ListProductIdsRequest {
