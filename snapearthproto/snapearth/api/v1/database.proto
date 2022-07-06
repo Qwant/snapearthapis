@@ -1,5 +1,5 @@
 syntax = "proto3";
-package snapearth.api.v1.database;
+package snapearth.api.v1;
 
 import "geobufproto/geobuf.proto";
 import "google/protobuf/descriptor.proto";
