@@ -2,7 +2,7 @@ syntax = "proto3";
 /*
    V2 of the EarthSignature API. This version of the API is designed to return `geobufproto.Data` instead of custom messages. The v2 also provides the same endpoints as the v1 and is intend to become the long term replacent of the v1.
 */
-package snapearth.api.v2.database;
+package snapearth.api.v2;
 
 import "geobufproto/geobuf.proto";
 import "google/protobuf/timestamp.proto";
