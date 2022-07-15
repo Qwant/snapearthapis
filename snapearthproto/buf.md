@@ -1,0 +1,2 @@
+# EarthSignature API specification
+

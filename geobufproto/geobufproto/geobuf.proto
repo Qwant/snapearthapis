@@ -1,11 +1,36 @@
-option optimize_for = LITE_RUNTIME;
+/*
+[Geobuf](https://github.com/mapbox/geobuf) is a compact binary encoding for geographic data.
+
+Geobuf provides nearly lossless compression of GeoJSON data into protocol buffers. Advantages over using GeoJSON alone:
+
+- Very compact: typically makes GeoJSON 6-8 times smaller.
+- 2-2.5x smaller even when comparing gzipped sizes.
+- Very fast encoding and decoding — even faster than native JSON parse/stringify.
+- Can accommodate any GeoJSON data, including extensions with arbitrary properties.
+
+The encoding format also potentially allows:
+
+- Easy incremental parsing — get features out as you read them, without the need to build in-memory representation of the whole data.
+- Partial reads — read only the parts you actually need, skipping the rest.
+
+Think of this as an attempt to design a simple, modern Shapefile successor that works seamlessly with GeoJSON. Unlike Mapbox Vector Tiles, it aims for nearly lossless compression of datasets — without tiling, projecting coordinates, flattening geometries or stripping properties.
+
+Note that the encoding schema is not stable yet — it may still change as we get community feedback and discover new ways to improve it.
+
+"Nearly" lossless means coordinates are encoded with precision of 6 digits after the decimal point (about 10cm).
+*/
 package geobufproto;
 
+/*
+   - keys: global arrays of unique keys
+   - dimensions: max coordinate dimensions
+   - precision: number of digits after decimal point for coordinates
+*/
 message Data {
-    repeated string keys = 1; // global arrays of unique keys
+    repeated string keys = 1;
 
-    optional uint32 dimensions = 2 [default = 2]; // max coordinate dimensions
-    optional uint32 precision = 3 [default = 6]; // number of digits after decimal point for coordinates
+    optional uint32 dimensions = 2 [default = 2];
+    optional uint32 precision = 3 [default = 6];
 
     oneof data_type {
         FeatureCollection feature_collection = 4;
@@ -13,6 +38,11 @@ message Data {
         Geometry geometry = 6;
     }
 
+    /*
+       - values: unique values
+       - properties: pairs of key/value indexes
+       - custom_properties: arbitrary properties
+    */
     message Feature {
         required Geometry geometry = 1;
 
@@ -21,16 +51,20 @@ message Data {
             sint64 int_id = 12;
         }
 
-        repeated Value values = 13; // unique values
-        repeated uint32 properties = 14 [packed = true]; // pairs of key/value indexes
-        repeated uint32 custom_properties = 15 [packed = true]; // arbitrary properties
+        repeated Value values = 13;
+        repeated uint32 properties = 14 [packed = true];
+        repeated uint32 custom_properties = 15 [packed = true];
     }
 
+    /*
+       - lengths: coordinate structure in lengths
+       - coords: delta-encoded integer values
+    */
     message Geometry {
         required Type type = 1;
 
-        repeated uint32 lengths = 2 [packed = true]; // coordinate structure in lengths
-        repeated sint64 coords = 3 [packed = true]; // delta-encoded integer values
+        repeated uint32 lengths = 2 [packed = true];
+        repeated sint64 coords = 3 [packed = true];
         repeated Geometry geometries = 4;
 
         repeated Value values = 13;
