@@ -1,4 +1,4 @@
-# EarthSignature API specification
+# EarthSignature API specification Guidelines
 
 EarthSignature is a platform providing Machine Learning segmentation images following [Corine LandCover](https://fr.wikipedia.org/wiki/Corine_Land_Cover) for [Sentinel-2](https://www.esa.int/ESA_Multimedia/Missions/Sentinel-2/(result_type)/images) satellite images
 
