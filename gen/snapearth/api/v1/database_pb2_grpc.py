@@ -19,22 +19,17 @@ class DatabaseProductServiceStub(object):
             channel: A grpc.Channel.
         """
         self.ListSegmentation = channel.unary_stream(
-                '/snapearth.api.v1.database.DatabaseProductService/ListSegmentation',
+                '/snapearth.api.v1.DatabaseProductService/ListSegmentation',
                 request_serializer=snapearth_dot_api_dot_v1_dot_database__pb2.ListSegmentationRequest.SerializeToString,
                 response_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.SegmentationResponse.FromString,
                 )
         self.CreateProduct = channel.unary_unary(
-                '/snapearth.api.v1.database.DatabaseProductService/CreateProduct',
+                '/snapearth.api.v1.DatabaseProductService/CreateProduct',
                 request_serializer=snapearth_dot_api_dot_v1_dot_database__pb2.CreateProductRequest.SerializeToString,
                 response_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.CreateProductResponse.FromString,
                 )
-        self.SearchSegmentation = channel.unary_stream(
-                '/snapearth.api.v1.database.DatabaseProductService/SearchSegmentation',
-                request_serializer=snapearth_dot_api_dot_v1_dot_database__pb2.SearchSegmentationRequest.SerializeToString,
-                response_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.SegmentationResponse.FromString,
-                )
         self.ListProductIds = channel.unary_stream(
-                '/snapearth.api.v1.database.DatabaseProductService/ListProductIds',
+                '/snapearth.api.v1.DatabaseProductService/ListProductIds',
                 request_serializer=snapearth_dot_api_dot_v1_dot_database__pb2.ListProductIdsRequest.SerializeToString,
                 response_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.ProductId.FromString,
                 )
@@ -61,13 +56,6 @@ class DatabaseProductServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def SearchSegmentation(self, request, context):
-        """Method to search a list of segmentation with textual query
-        """
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def ListProductIds(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -87,11 +75,6 @@ def add_DatabaseProductServiceServicer_to_server(servicer, server):
                     request_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.CreateProductRequest.FromString,
                     response_serializer=snapearth_dot_api_dot_v1_dot_database__pb2.CreateProductResponse.SerializeToString,
             ),
-            'SearchSegmentation': grpc.unary_stream_rpc_method_handler(
-                    servicer.SearchSegmentation,
-                    request_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.SearchSegmentationRequest.FromString,
-                    response_serializer=snapearth_dot_api_dot_v1_dot_database__pb2.SegmentationResponse.SerializeToString,
-            ),
             'ListProductIds': grpc.unary_stream_rpc_method_handler(
                     servicer.ListProductIds,
                     request_deserializer=snapearth_dot_api_dot_v1_dot_database__pb2.ListProductIdsRequest.FromString,
@@ -99,7 +82,7 @@ def add_DatabaseProductServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'snapearth.api.v1.database.DatabaseProductService', rpc_method_handlers)
+            'snapearth.api.v1.DatabaseProductService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -122,7 +105,7 @@ class DatabaseProductService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v1.database.DatabaseProductService/ListSegmentation',
+        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v1.DatabaseProductService/ListSegmentation',
             snapearth_dot_api_dot_v1_dot_database__pb2.ListSegmentationRequest.SerializeToString,
             snapearth_dot_api_dot_v1_dot_database__pb2.SegmentationResponse.FromString,
             options, channel_credentials,
@@ -139,26 +122,9 @@ class DatabaseProductService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/snapearth.api.v1.database.DatabaseProductService/CreateProduct',
+        return grpc.experimental.unary_unary(request, target, '/snapearth.api.v1.DatabaseProductService/CreateProduct',
             snapearth_dot_api_dot_v1_dot_database__pb2.CreateProductRequest.SerializeToString,
             snapearth_dot_api_dot_v1_dot_database__pb2.CreateProductResponse.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def SearchSegmentation(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v1.database.DatabaseProductService/SearchSegmentation',
-            snapearth_dot_api_dot_v1_dot_database__pb2.SearchSegmentationRequest.SerializeToString,
-            snapearth_dot_api_dot_v1_dot_database__pb2.SegmentationResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -173,7 +139,7 @@ class DatabaseProductService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v1.database.DatabaseProductService/ListProductIds',
+        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v1.DatabaseProductService/ListProductIds',
             snapearth_dot_api_dot_v1_dot_database__pb2.ListProductIdsRequest.SerializeToString,
             snapearth_dot_api_dot_v1_dot_database__pb2.ProductId.FromString,
             options, channel_credentials,

@@ -6,10 +6,12 @@ from snapearth.api.v2 import database_pb2 as snapearth_dot_api_dot_v2_dot_databa
 
 
 class DatabaseProductServiceStub(object):
-    """Service that exposes the EarthSignature database.
-    The service exposes two endpoints for its consumers
-    - ListSegmentation to query a list of segmentation responses
-    - CreateProduct to add a new product in the database
+    """
+    The Service that exposes the EarthSignature database.
+    it provides three endpoints
+    - ListSegmentation: This endpoints returns a list of segments that are available in the database.
+    - ListProductIds:  This endpoint returns the list of the product that are available in the database.
+    - CreateProduct: This endpoint creates a new product in the database.
     """
 
     def __init__(self, channel):
@@ -19,39 +21,39 @@ class DatabaseProductServiceStub(object):
             channel: A grpc.Channel.
         """
         self.ListSegmentation = channel.unary_stream(
-                '/snapearth.api.v2.database.DatabaseProductService/ListSegmentation',
+                '/snapearth.api.v2.DatabaseProductService/ListSegmentation',
                 request_serializer=snapearth_dot_api_dot_v2_dot_database__pb2.ListSegmentationRequest.SerializeToString,
                 response_deserializer=snapearth_dot_api_dot_v2_dot_database__pb2.SegmentationResponse.FromString,
                 )
         self.CreateProduct = channel.unary_unary(
-                '/snapearth.api.v2.database.DatabaseProductService/CreateProduct',
+                '/snapearth.api.v2.DatabaseProductService/CreateProduct',
                 request_serializer=snapearth_dot_api_dot_v2_dot_database__pb2.CreateProductRequest.SerializeToString,
                 response_deserializer=snapearth_dot_api_dot_v2_dot_database__pb2.CreateProductResponse.FromString,
                 )
         self.ListProductIds = channel.unary_stream(
-                '/snapearth.api.v2.database.DatabaseProductService/ListProductIds',
+                '/snapearth.api.v2.DatabaseProductService/ListProductIds',
                 request_serializer=snapearth_dot_api_dot_v2_dot_database__pb2.ListProductIdsRequest.SerializeToString,
                 response_deserializer=snapearth_dot_api_dot_v2_dot_database__pb2.SegmentationResponse.FromString,
                 )
 
 
 class DatabaseProductServiceServicer(object):
-    """Service that exposes the EarthSignature database.
-    The service exposes two endpoints for its consumers
-    - ListSegmentation to query a list of segmentation responses
-    - CreateProduct to add a new product in the database
+    """
+    The Service that exposes the EarthSignature database.
+    it provides three endpoints
+    - ListSegmentation: This endpoints returns a list of segments that are available in the database.
+    - ListProductIds:  This endpoint returns the list of the product that are available in the database.
+    - CreateProduct: This endpoint creates a new product in the database.
     """
 
     def ListSegmentation(self, request, context):
-        """Query the database and returns a list of SegmentationResponse
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
     def CreateProduct(self, request, context):
-        """Add a new product in the database
-        """
+        """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
@@ -82,16 +84,18 @@ def add_DatabaseProductServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'snapearth.api.v2.database.DatabaseProductService', rpc_method_handlers)
+            'snapearth.api.v2.DatabaseProductService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
 class DatabaseProductService(object):
-    """Service that exposes the EarthSignature database.
-    The service exposes two endpoints for its consumers
-    - ListSegmentation to query a list of segmentation responses
-    - CreateProduct to add a new product in the database
+    """
+    The Service that exposes the EarthSignature database.
+    it provides three endpoints
+    - ListSegmentation: This endpoints returns a list of segments that are available in the database.
+    - ListProductIds:  This endpoint returns the list of the product that are available in the database.
+    - CreateProduct: This endpoint creates a new product in the database.
     """
 
     @staticmethod
@@ -105,7 +109,7 @@ class DatabaseProductService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v2.database.DatabaseProductService/ListSegmentation',
+        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v2.DatabaseProductService/ListSegmentation',
             snapearth_dot_api_dot_v2_dot_database__pb2.ListSegmentationRequest.SerializeToString,
             snapearth_dot_api_dot_v2_dot_database__pb2.SegmentationResponse.FromString,
             options, channel_credentials,
@@ -122,7 +126,7 @@ class DatabaseProductService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/snapearth.api.v2.database.DatabaseProductService/CreateProduct',
+        return grpc.experimental.unary_unary(request, target, '/snapearth.api.v2.DatabaseProductService/CreateProduct',
             snapearth_dot_api_dot_v2_dot_database__pb2.CreateProductRequest.SerializeToString,
             snapearth_dot_api_dot_v2_dot_database__pb2.CreateProductResponse.FromString,
             options, channel_credentials,
@@ -139,7 +143,7 @@ class DatabaseProductService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v2.database.DatabaseProductService/ListProductIds',
+        return grpc.experimental.unary_stream(request, target, '/snapearth.api.v2.DatabaseProductService/ListProductIds',
             snapearth_dot_api_dot_v2_dot_database__pb2.ListProductIdsRequest.SerializeToString,
             snapearth_dot_api_dot_v2_dot_database__pb2.SegmentationResponse.FromString,
             options, channel_credentials,
